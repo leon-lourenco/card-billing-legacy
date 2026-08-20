@@ -7,10 +7,8 @@ updates:
     schedule:
       interval: "weekly"
 
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "weekly"
+  # No "docker" entry - there's no Dockerfile here to track. docker-compose.yml pins its own
+  # image tags directly (postgres:16, redpanda:latest); this repo doesn't build a custom image.
 
   # Keeps the actions this repo's own workflow pins current. The reusable workflows living in
   # ci-templates have their own Dependabot config over there - this only covers what's pinned
