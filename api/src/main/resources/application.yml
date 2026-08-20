@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: card-billing-legacy
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/cardbilling
+    username: cardbilling
+    password: cardbilling
+
+  jpa:
+    # No Flyway/Liquibase here on purpose - this is the legacy side of the portfolio, and
+    # letting Hibernate own the schema via ddl-auto is exactly the kind of thing a real system
+    # in this state would still be doing. The modernized counterpart introduces real migrations.
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-dispatch
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.cardbilling: info

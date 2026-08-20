@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.cardbilling</groupId>
+    <artifactId>card-billing-legacy</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>card-billing-legacy</name>
+    <description>Modular monolith simulating a card issuer's billing/collections cycle - one deployable, one shared database, Java 11 + Spring Boot 2.7.</description>
+
+    <properties>
+        <java.version>11</java.version>
+        <opencsv.version>5.10</opencsv.version>
+        <springdoc.version>1.8.0</springdoc.version>
+    </properties>
+
+    <modules>
+        <module>domain</module>
+        <module>invoice-closing</module>
+        <module>delinquency</module>
+        <module>interest-accrual</module>
+        <module>notification-dispatch</module>
+        <module>reconciliation</module>
+        <module>api</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.cardbilling</groupId>
+                <artifactId>domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cardbilling</groupId>
+                <artifactId>invoice-closing</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cardbilling</groupId>
+                <artifactId>delinquency</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cardbilling</groupId>
+                <artifactId>interest-accrual</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cardbilling</groupId>
+                <artifactId>notification-dispatch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cardbilling</groupId>
+                <artifactId>reconciliation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.opencsv</groupId>
+                <artifactId>opencsv</artifactId>
+                <version>${opencsv.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>2.7.18</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
